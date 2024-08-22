@@ -52,7 +52,7 @@ def TimeLog(message, col):
 
 
 def ReadEmails():
-    PreTimeLog()
+    #PreTimeLog()
 
     """Shows basic usage of the Gmail API.
     Lists the user's Gmail labels.
