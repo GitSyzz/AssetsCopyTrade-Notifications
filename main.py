@@ -81,7 +81,7 @@ def ReadEmails():
         results = service.users().messages().list(userId='me', labelIds=['INBOX'], q="is:unread Your ROI profit is available").execute()
         messages = results.get('messages',[]);
         if not messages:
-            TimeLog('No New Email', colorama.Fore.LIGHTBLUE_EX)
+            print(f'{colorama.Fore.LIGHTBLUE_EX}No New Email{colorama.Fore.RESET}')
         else:
             message_count = 0
             for message in messages:
@@ -101,7 +101,7 @@ def ReadEmails():
 
                                     amount = re.findall(pattern, text)[0]
 
-                                    TimeLog(f"Updated ROI Profit: {amount}", colorama.Fore.GREEN)
+                                    print(f"{colorama.Fore.GREEN}Updated ROI Profit: {amount}{colorama.Fore.RESET}")
 
                                     conn.request("POST", "/1/messages.json",
                                                  urllib.parse.urlencode({
@@ -130,7 +130,7 @@ def ReadEmails():
 
                                 amount = re.findall(pattern, text)[0]
 
-                                TimeLog(f"Updated ROI Profit: {amount}", colorama.Fore.LIGHTBLUE_EX)
+                                print(f"{colorama.Fore.GREEN}Updated ROI Profit: {amount}{colorama.Fore.RESET}")
 
                                 conn.request("POST", "/1/messages.json",
                                             urllib.parse.urlencode({
@@ -151,7 +151,7 @@ def ReadEmails():
                             except BaseException as error:
                                pass
     except Exception as error:
-        TimeLog(f'An error occurred: {error}', colorama.Fore.YELLOW)
+        print(f'{colorama.Fore.YELLOW}An error occurred: {error}{colorama.Fore.RESET}')
 
 clear()
 
